@@ -5,7 +5,7 @@ from data import Datasource
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--data_path", default="data/company_data.xlsx")
+    parser.add_argument("--data_path", required=True)
     parser.add_argument("--db_path", default="db/testbase.db")
     parser.add_argument("--table_name", default="CompanyData")
     parser.add_argument("--result_table_name", default="Total")

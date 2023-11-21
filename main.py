@@ -1,5 +1,5 @@
 import argparse
-from datasource import Datasource
+from src.datasource import Datasource
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

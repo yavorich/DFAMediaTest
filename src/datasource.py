@@ -1,7 +1,7 @@
 import random
 import pandas as pd
 from datetime import date
-from db import SQLiteDatasource
+from .db import SQLiteDatasource
 
 
 class Datasource(SQLiteDatasource):

@@ -1,12 +1,12 @@
 import random
 import pandas as pd
 from datetime import date
-from db import SQLite
+from db import SQLiteDatasource
 
 
-class Datasource:
-    def __init__(self, data_path: str, db: SQLite):
-        self.db = db
+class Datasource(SQLiteDatasource):
+    def __init__(self, data_path: str, db_path: str):
+        super().__init__(db_path)
         self.df = self.parse(data_path)
 
     def parse(self, data_path: str) -> pd.DataFrame:
@@ -36,11 +36,11 @@ class Datasource:
                       for c in df.columns.to_flat_index()]
 
     def save_to_db(self, table_name) -> None:
-        self.df.to_sql(table_name, self.db.connection, if_exists="replace")
+        self.df.to_sql(table_name, self.connection, if_exists="replace")
 
     def save_as_excel(self, df: pd.DataFrame) -> None:
         df.to_excel("data/result.xlsx")
 
     def show_db_table(self, table_name: str) -> None:
         # визуализация таблицы в терминале
-        print(pd.read_sql(f"SELECT * FROM {table_name}", self.db.connection))
+        print(pd.read_sql(f"SELECT * FROM {table_name}", self.connection))
